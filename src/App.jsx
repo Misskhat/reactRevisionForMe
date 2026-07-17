@@ -16,6 +16,18 @@ const myElement = (
   </table>
 );
 
+// react es6
+/**
+ * class
+ * Arrow function
+ * Variable (let, const)
+ * Array method => most important (map, forEach, filter, find, reduce)
+ * Destructuring
+ * Modules
+ * Ternary operator
+ * Spread operator
+ */
+
 function App() {
   return <div>{myElement}</div>;
 }
