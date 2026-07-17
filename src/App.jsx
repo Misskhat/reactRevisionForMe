@@ -1,7 +1,6 @@
 import "./App.css";
 
-//create a variable and render it
-
+//CREATE A VARIABLE AND RENDER INSIDE JSX
 const myElement = (
   <table>
     <tr>
@@ -16,7 +15,7 @@ const myElement = (
   </table>
 );
 
-// react es6
+// REACT ES6 MOST IMPORT FOR LEARNING REACT
 /**
  * class
  * Arrow function
@@ -28,8 +27,29 @@ const myElement = (
  * Spread operator
  */
 
+class Car {
+  constructor(name, year) {
+    this.brandName = name;
+    this.launchYear = year;
+  }
+
+  about() {
+    return `I have ${this.brandName} car and it is launch ${this.launchYear}`;
+  }
+}
+
+const myCar = new Car("BMW", 2027);
+
 function App() {
-  return <div>{myElement}</div>;
+  return (
+    <div>
+      {/* RENDER VARIABLE */}
+      <div>{myElement}</div>
+
+      {/* RENDER NEW CLASS INSIDE METHOD */}
+      <div>{myCar.about()}</div>
+    </div>
+  );
 }
 
 export default App;
