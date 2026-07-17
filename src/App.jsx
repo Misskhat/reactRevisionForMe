@@ -1,17 +1,23 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "./assets/vite.svg";
-import heroImg from "./assets/hero.png";
 import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0);
+//create a variable and render it
 
-  return (
-    <div>
-      <h1>Hello react world!</h1>
-    </div>
-  );
+const myElement = (
+  <table>
+    <tr>
+      <th>Name</th>
+    </tr>
+    <tr>
+      <td>Mishkat</td>
+    </tr>
+    <tr>
+      <td>Sumayia</td>
+    </tr>
+  </table>
+);
+
+function App() {
+  return <div>{myElement}</div>;
 }
 
 export default App;
