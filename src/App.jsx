@@ -37,8 +37,9 @@ class Car {
     return `I have ${this.brandName} car and it is launch ${this.launchYear}`;
   }
 }
-
 const myCar = new Car("BMW", 2027);
+
+const fruits = ["apple", "banana", "cherry"];
 
 function App() {
   return (
@@ -48,6 +49,13 @@ function App() {
 
       {/* RENDER NEW CLASS INSIDE METHOD */}
       <div>{myCar.about()}</div>
+
+      {/* RENDER ARRAY IN MAP */}
+      <ol>
+        {fruits.map((fruit, idx) => (
+          <li key={idx}>{fruit}</li>
+        ))}
+      </ol>
     </div>
   );
 }
