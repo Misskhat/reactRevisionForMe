@@ -5,11 +5,11 @@ import { Outlet } from "react-router";
 
 function MainLayout() {
   return (
-    <div>
-      <nav>
+    <div className="min-h-screen flex flex-col">
+      <nav className="min-w-11/12 mx-auto -translate-x-3">
         <Navbar />
       </nav>
-      <main>
+      <main className="flex-1 min-w-11/12 mx-auto">
         <Outlet />
       </main>
       <footer>
