@@ -44,7 +44,10 @@ function Navbar() {
             {navList}
           </ul>
         </div>
-        <NavLink to={"/"} className="text-xl">
+        <NavLink
+          to={"/"}
+          className="text-2xl font-bold border-b-2 border-gray-600 hover:border-amber-400 transition-all duration-300"
+        >
           HomeDeco
         </NavLink>
       </div>
