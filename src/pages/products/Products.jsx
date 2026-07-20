@@ -1,15 +1,28 @@
-import React, { useState } from "react";
+import { useMemo, useState } from "react";
 import useProducts from "../../hooks/useProducts";
 import ProductCard from "../../components/ProductCard";
 
 function Products() {
   const { products } = useProducts();
   const [search, setSearch] = useState("");
-  console.log(search);
+  const searchTrim = search.trim().toLocaleLowerCase();
+  const searchProducts = useMemo(() => {
+    const findSearchProducts = products.filter((product) =>
+      product.name.toLocaleLowerCase().includes(searchTrim),
+    );
+    return searchTrim ? findSearchProducts : products;
+  }, [products, searchTrim]);
+  console.log(searchProducts);
+
   return (
     <div>
       <div className="py-5 flex justify-between items-center">
-        <p className="text-xl font-bold">All Products</p>
+        <p className="text-xl font-bold">
+          All Products{" "}
+          <span className="text-sm text-gray-700">
+            ({searchProducts.length}) product found
+          </span>
+        </p>
         <div className="space-x-2">
           <label className="input">
             <svg
@@ -29,6 +42,7 @@ function Products() {
               </g>
             </svg>
             <input
+              value={search}
               onChange={(e) => setSearch(e.target.value)}
               type="search"
               required
@@ -38,7 +52,7 @@ function Products() {
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 py-5">
-        {products.map((product) => (
+        {searchProducts.map((product) => (
           <ProductCard key={product.id} product={product}></ProductCard>
         ))}
       </div>
