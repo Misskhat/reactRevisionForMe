@@ -1,4 +1,4 @@
-import React from "react";
+import React, { cacheSignal } from "react";
 import { useParams } from "react-router";
 import useProducts from "../../hooks/useProducts";
 
@@ -7,12 +7,27 @@ function ProductDetails() {
   const { products, loading, error } = useProducts();
   const product = products.find((product) => product.id === Number(id));
 
-  loading && (
-    <span>
-      L<span className="animate-spin"> 🎯 </span>ading
-    </span>
-  );
-  // console.log(product);
+  if (loading) {
+    return (
+      <span>
+        L<span className="animate-spin"> 🎯 </span>ading
+      </span>
+    );
+  }
+
+  //try to save data in localstorage
+  const handleProductsStore = () => {
+    const existingProducts = JSON.parse(localStorage.getItem("wishList"));
+    if (existingProducts === null) {
+      localStorage.setItem("wishList", JSON.stringify(product));
+    } else {
+      localStorage.setItem(
+        "WishList",
+        JSON.stringify({ ...existingProducts, product }),
+      );
+    }
+  };
+
   const {
     category,
     description,
@@ -52,7 +67,9 @@ function ProductDetails() {
                 </span>
               </div>
             </div>
-            <button className="btn btn-outline">Add to WishList</button>
+            <button onClick={handleProductsStore} className="btn btn-outline">
+              Add to WishList
+            </button>
           </div>
         </div>
       </div>
