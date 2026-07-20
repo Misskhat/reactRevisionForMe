@@ -14,7 +14,7 @@ function ProductCard({ product }) {
         <div className="card-actions justify-end">
           <p className="font-bold py-2">Product price: ${price}</p>
           <Link to={`/product/${id}`} className="btn btn-outline">
-            Buy Now
+            View Details
           </Link>
         </div>
       </div>
