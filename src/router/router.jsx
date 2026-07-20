@@ -4,6 +4,7 @@ import Home from "../pages/home/Home";
 import Products from "../pages/products/Products";
 import Error from "../pages/error/Error";
 import WishList from "../pages/wishList/WishList";
+import ProductDetails from "./../pages/productDetails/ProductDetails";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "/wishlist",
         element: <WishList />,
+      },
+      {
+        path: "/product/:id",
+        element: <ProductDetails />,
       },
     ],
   },
