@@ -17,15 +17,17 @@ function ProductDetails() {
 
   //try to save data in localstorage
   const handleProductsStore = () => {
-    const existingProducts = JSON.parse(localStorage.getItem("wishList"));
-    if (existingProducts === null) {
-      localStorage.setItem("wishList", JSON.stringify(product));
+    const existingProduct = JSON.parse(localStorage.getItem("wishList"));
+    let updateProducts = [];
+    if (existingProduct) {
+      let isDuplicate = existingProduct.some((p) => p.id === Number(id));
+      if (isDuplicate) return alert("Product Already exist in wish list.");
+      // console.log(isDuplicate);
+      updateProducts = [...existingProduct, product];
     } else {
-      localStorage.setItem(
-        "WishList",
-        JSON.stringify({ ...existingProducts, product }),
-      );
+      updateProducts.push(product);
     }
+    localStorage.setItem("wishList", JSON.stringify(updateProducts));
   };
 
   const {

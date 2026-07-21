@@ -12,7 +12,7 @@ function Products() {
     );
     return searchTrim ? findSearchProducts : products;
   }, [products, searchTrim]);
-  console.log(searchProducts);
+  // console.log(searchProducts);
 
   return (
     <div>
