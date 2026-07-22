@@ -3,8 +3,8 @@ import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/home/Home";
 import Products from "../pages/products/Products";
 import Error from "../pages/error/Error";
-import WishList from "../pages/wishList/WishList";
 import ProductDetails from "./../pages/productDetails/ProductDetails";
+import WishList from "../pages/wishList/WishList";
 
 const router = createBrowserRouter([
   {
@@ -21,12 +21,12 @@ const router = createBrowserRouter([
         element: <Products />,
       },
       {
-        path: "/wishlist",
-        element: <WishList />,
-      },
-      {
         path: "/product/:id",
         element: <ProductDetails />,
+      },
+      {
+        path: "/wishList",
+        element: <WishList />,
       },
     ],
   },

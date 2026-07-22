@@ -10,7 +10,7 @@ const navList = (
       <NavLink to={"/products"}>Products</NavLink>
     </li>
     <li>
-      <NavLink to={"/wishlist"}>WishList</NavLink>
+      <NavLink to={"/wishList"}>WishList</NavLink>
     </li>
   </>
 );
