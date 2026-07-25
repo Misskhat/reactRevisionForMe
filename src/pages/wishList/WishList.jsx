@@ -1,23 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 function WishList() {
-  const products = JSON.parse(localStorage.getItem("wishList"));
-  console.log(products);
+  const [wiseList, setWishList] = useState([]);
+  const [sortedValue, setSortedValue] = useState(null);
+
+  useEffect(() => {
+    const saveProducts = JSON.parse(localStorage.getItem("wishList"));
+    if (saveProducts) return setWishList(saveProducts);
+  }, []);
+
+  const sortByPrice = () => {
+    if (sortedValue === "lower") {
+      const highValue = [...wiseList].sort((a, b) => a.price - b.price);
+      return highValue;
+    } else if (sortedValue === "higher") {
+      const lowerValue = [...wiseList].sort((a, b) => b.price - a.price);
+      return lowerValue;
+    } else {
+      return wiseList;
+    }
+  };
+
   return (
     <div className="">
-      <div className="">
+      <div className="flex justify-between">
         <h2 className="text-2xl font-bold">
           Wish List
           <span className="text-sm text-gray-500 pl-1">
-            ({products.length} product found)
+            ({wiseList.length} product found)
           </span>
         </h2>
-        <select name="sort" id="">
-          <option value="nan">Sort by price</option>
+        <select
+          value={sortedValue}
+          onChange={(e) => setSortedValue(e.target.value)}
+          name="sort"
+          className="border-2 rounded"
+        >
+          <option value="">Sort by price</option>
+          <option value="higher">Higher price</option>
+          <option value="lower">Lower Pirce</option>
         </select>
       </div>
       <div className="space-y-5 my-5">
-        {products.map((product) => (
+        {sortByPrice().map((product) => (
           <div className="flex items-center bg-base-100 border pr-2 rounded">
             <figure>
               <img src={product.image} alt="Shoes" className="h-38 rounded" />
