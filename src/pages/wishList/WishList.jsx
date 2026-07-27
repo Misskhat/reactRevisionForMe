@@ -62,10 +62,17 @@ function WishList() {
             className="flex items-center bg-base-100 border pr-2 rounded"
           >
             <figure>
-              <img src={product.image} alt="Shoes" className="h-38 rounded" />
+              <img
+                src={product.image}
+                alt="Shoes"
+                className="h-46 w-40 rounded"
+              />
             </figure>
             <div className="card-body">
               <h2 className="card-title">{product.name}</h2>
+              <p className="text-gray-700 font-semibold py-1 px-2 border-l-4 border-green-600">
+                Category : {product.category}
+              </p>
               <p>{product.description}</p>
               <p className="text-xl font-bold">
                 Product price: ${product.price}
