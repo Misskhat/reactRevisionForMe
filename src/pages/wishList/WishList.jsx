@@ -1,4 +1,13 @@
 import React, { useEffect, useState } from "react";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Legend,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
 
 function WishList() {
   const [wiseList, setWishList] = useState([]);
@@ -35,6 +44,18 @@ function WishList() {
     localStorage.setItem("wishList", JSON.stringify(updateList));
   };
 
+  // generate chart data
+  const totalsByCategory = {};
+  wiseList.forEach((product) => {
+    const category = product.category;
+    totalsByCategory[category] =
+      (totalsByCategory[category] || 0) + product.price;
+  });
+  const cartData = Object.keys(totalsByCategory).map((cat) => ({
+    category: cat,
+    total: totalsByCategory[cat],
+  }));
+  // console.log(cartData);
   return (
     <div className="">
       <div className="flex justify-between">
@@ -88,6 +109,37 @@ function WishList() {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Rechart functionality */}
+      <div>
+        <h2>Wish List Cart Here: </h2>
+        <div className="border-2 rounded-xl p-2 h-96">
+          <BarChart
+            style={{
+              width: "100%",
+              maxWidth: "",
+              maxHeight: "380px",
+              aspectRatio: 1.618,
+            }}
+            responsive
+            data={cartData}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="category" />
+            <YAxis width="auto" />
+            <Tooltip />
+            <Legend />
+            <Bar
+              dataKey="total"
+              fill="#AF719D"
+              activeBar={{ fill: "#A5D6A7", stroke: "#66BB6A" }}
+              radius={[10, 10, 0, 0]}
+            />
+
+            {/* <RechartsDevtools /> */}
+          </BarChart>
+        </div>
       </div>
     </div>
   );
