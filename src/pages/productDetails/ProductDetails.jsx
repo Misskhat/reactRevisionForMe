@@ -24,6 +24,7 @@ function ProductDetails() {
       if (isDuplicate) return alert("Product Already exist in wish list.");
       // console.log(isDuplicate);
       updateProducts = [...existingProduct, product];
+      alert("Your product added on wiseList");
     } else {
       updateProducts.push(product);
     }

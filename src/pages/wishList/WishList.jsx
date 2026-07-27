@@ -9,7 +9,7 @@ function WishList() {
     if (saveProducts) return setWishList(saveProducts);
   }, []);
 
-  const sortByPrice = () => {
+  const sortByPrice = (() => {
     if (sortedValue === "lower") {
       const highValue = [...wiseList].sort((a, b) => a.price - b.price);
       return highValue;
@@ -19,6 +19,20 @@ function WishList() {
     } else {
       return wiseList;
     }
+  })();
+
+  // remove from localstorage and update ui
+  const handleRemove = (id) => {
+    console.log(id);
+    const existingWishList = JSON.parse(localStorage.getItem("wishList"));
+    if (!existingWishList) {
+      console.log("existingWishList not found");
+      return;
+    }
+    let updateList = existingWishList.filter((p) => p.id != id);
+    alert("Your wiseList product remove");
+    setWishList(updateList);
+    localStorage.setItem("wishList", JSON.stringify(updateList));
   };
 
   return (
@@ -42,8 +56,11 @@ function WishList() {
         </select>
       </div>
       <div className="space-y-5 my-5">
-        {sortByPrice().map((product) => (
-          <div className="flex items-center bg-base-100 border pr-2 rounded">
+        {sortByPrice.map((product, i) => (
+          <div
+            key={i}
+            className="flex items-center bg-base-100 border pr-2 rounded"
+          >
             <figure>
               <img src={product.image} alt="Shoes" className="h-38 rounded" />
             </figure>
@@ -55,7 +72,12 @@ function WishList() {
               </p>
             </div>
             <div className="">
-              <button className="btn btn-outline">Remove</button>
+              <button
+                onClick={() => handleRemove(product.id)}
+                className="btn btn-outline"
+              >
+                Remove
+              </button>
             </div>
           </div>
         ))}
